@@ -78,7 +78,7 @@ public class DataStreamJob {
 				.flatMap(new Tokenizer()).name("tokenizer")
 				.keyBy(value -> value.f0)
 				.sum(1).name("counter")
-				.print().name("print-sink");
+				.addSink(new Printer()).name("printer");
 		env.execute("word-count");
 	}
 
